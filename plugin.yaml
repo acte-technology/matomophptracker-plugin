@@ -3,7 +3,7 @@ plugin:
     description: 'acte.matomophptracker::lang.plugin.description'
     author: 'ACTE Solutions'
     icon: oc-icon-line-chart
-    homepage: 'https://gitlab.acte.solutions/octobercms/plugins/matomophptracker'
+    homepage: 'https://github.com/AdrienAdB/matomophptracker-plugin'
 permissions:
     acte.matomophptracker.manage_settings:
         tab: 'acte.matomophptracker::lang.plugin.name'
