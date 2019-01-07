@@ -1,0 +1,10 @@
+plugin:
+    name: 'acte.matomophptracker::lang.plugin.name'
+    description: 'acte.matomophptracker::lang.plugin.description'
+    author: 'ACTE Solutions'
+    icon: oc-icon-line-chart
+    homepage: 'https://gitlab.acte.solutions/octobercms/plugins/matomophptracker'
+permissions:
+    acte.matomophptracker.manage_settings:
+        tab: 'acte.matomophptracker::lang.plugin.name'
+        label: 'acte.matomophptracker::lang.plugin.name'

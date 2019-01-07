@@ -1,0 +1,19 @@
+fields:
+  is_enable:
+    label: acte.matomophptracker::lang.settings.enable_tracker
+    span: full
+    type: switch
+  url:
+    label: acte.matomophptracker::lang.settings.matomo_url
+    span: auto
+    type: text
+  siteid:
+    label: acte.matomophptracker::lang.settings.site_id
+    span: auto
+    type: number
+    comment: acte.matomophptracker::lang.settings.site_id_description
+  token:
+    label: acte.matomophptracker::lang.settings.token
+    span: full
+    type: text
+    comment: acte.matomophptracker::lang.settings.token_description
