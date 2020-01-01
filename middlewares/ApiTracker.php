@@ -1,10 +1,7 @@
 <?php namespace Acte\MatomoPhpTracker\Middlewares;
 
 use Closure;
-use Log;
-
 use Acte\MatomoPhpTracker\Classes\TrackerHelper;
-
 
 class ApiTracker
 {
@@ -20,7 +17,6 @@ class ApiTracker
       $trackerHelper = new TrackerHelper;
       $tracker = $trackerHelper->initTracker();
 
-      trace_log($tracker);
       //send page tracking
       if($tracker){ $tracker->doTrackPageView(basename($_SERVER['PHP_SELF'])); }
 
