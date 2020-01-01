@@ -1,2 +1,4 @@
 1.0.1:
     - 'Initialize plugin.'
+1.0.2:
+    - 'Added ApiTracker middleware. Moved serverSide component logic to classes/TrackerHelper.php'
