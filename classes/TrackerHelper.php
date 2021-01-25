@@ -180,22 +180,6 @@ class TrackerHelper
 
     }
 
-    // if(isset($_COOKIE['CookieConsent'])) {
-    //   $consent = $_COOKIE['CookieConsent'];
-    //   if($consent == 0 || $consent == "0"){
-    //     $piwikTracker->disableCookieSupport();
-    //   } else {
-    //       $domain = "";
-    //       $path = "/";
-    //       $secure = "true";
-    //       $httpOnly = "true";
-    //       $sameSite = "Strict";
-    //       $piwikTracker->enableCookies($domain, $path, $secure, $httpOnly, $sameSite);
-    //     }
-    // } else {
-    //   $piwikTracker->disableCookieSupport();
-    // }
-
     //setip mandatory if behind a proxy!
     $ip = $this->getClientIp();
     $piwikTracker->setIp("$ip");
