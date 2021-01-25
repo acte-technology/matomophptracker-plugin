@@ -1,19 +1,123 @@
-fields:
-  is_enable:
-    label: acte.matomophptracker::lang.settings.enable_tracker
-    span: full
-    type: switch
-  url:
-    label: acte.matomophptracker::lang.settings.matomo_url
-    span: auto
-    type: text
-  siteid:
-    label: acte.matomophptracker::lang.settings.site_id
-    span: auto
-    type: number
-    comment: acte.matomophptracker::lang.settings.site_id_description
-  token:
-    label: acte.matomophptracker::lang.settings.token
-    span: full
-    type: text
-    comment: acte.matomophptracker::lang.settings.token_description
+tabs:
+  fields:
+    is_enable:
+      label: acte.matomophptracker::lang.settings.enable_tracker
+      span: full
+      type: switch
+      tab: acte.matomophptracker::lang.settings.tabs.config
+    url:
+      label: acte.matomophptracker::lang.settings.matomo_url
+      span: auto
+      type: text
+      tab: acte.matomophptracker::lang.settings.tabs.config
+    siteid:
+      label: acte.matomophptracker::lang.settings.site_id
+      span: auto
+      type: number
+      comment: acte.matomophptracker::lang.settings.site_id_description
+      tab: acte.matomophptracker::lang.settings.tabs.config
+    token:
+      label: acte.matomophptracker::lang.settings.token
+      span: full
+      type: text
+      comment: acte.matomophptracker::lang.settings.token_description
+      tab: acte.matomophptracker::lang.settings.tabs.config
+
+    ## CONSENT
+    
+    section_consent:
+      type: section
+      label: acte.matomophptracker::lang.settings.section.section_consent
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+
+    consent_mode:
+      label: acte.matomophptracker::lang.settings.consent.consent_mode
+      span: full
+      type: switch
+      default: false
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+
+    section_fingerprint:
+      type: section
+      label: acte.matomophptracker::lang.settings.section.section_fingerprint
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+
+    disable_cookies:
+      label: acte.matomophptracker::lang.settings.consent.disable_cookies
+      comment: acte.matomophptracker::lang.settings.consent.comments.disable_comment
+      span: full
+      type: checkbox
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+
+    section_cookie:
+      type: section
+      label: acte.matomophptracker::lang.settings.section.section_cookie
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+      default: false
+
+    allow_cookies:
+      label: acte.matomophptracker::lang.settings.consent.allow_cookies
+      comment: acte.matomophptracker::lang.settings.consent.comments.enable_comment
+      span: full
+      type: checkbox
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+
+    consent_cookie_name:
+      label: acte.matomophptracker::lang.settings.consent.consent_cookie_name
+      comment: Enter the name of the cookie where the user's consent is stored.
+      placeholder: cookie_consent
+      span: storm
+      type: text
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+      cssClass: field-indent col-md-4 
+      trigger:
+          action: show
+          field: allow_cookies
+          condition: checked
+
+    consent_cookie_value:
+      label: acte.matomophptracker::lang.settings.consent.consent_cookie_value
+      comment: Enter the value of the cookie when consent is granted.
+      placeholder: true
+      span: storm
+      type: text
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+      cssClass: field-indent col-md-4 
+      trigger:
+        action: show
+        field: allow_cookies
+        condition: checked
+      
+    http_cookies:
+      label: acte.matomophptracker::lang.settings.consent.http_cookies
+      span: full
+      type: checkbox
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+      cssClass: field-indent
+      trigger:
+        action: show
+        field: allow_cookies
+        condition: checked
+    
+    secure_cookies:
+      label: acte.matomophptracker::lang.settings.consent.secure_cookies
+      span: full
+      type: checkbox
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+      cssClass: field-indent
+      trigger:
+        action: show
+        field: allow_cookies
+        condition: checked
+    
+    samesite_cookies:
+      label: acte.matomophptracker::lang.settings.consent.samesite_cookies
+      span: full
+      type: checkbox
+      tab: acte.matomophptracker::lang.settings.tabs.consent
+      cssClass: field-indent
+      trigger:
+        action: show
+        field: allow_cookies
+        condition: checked
+      
