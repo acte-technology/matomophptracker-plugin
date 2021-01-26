@@ -3,4 +3,4 @@
 1.0.2:
     - 'Added ApiTracker middleware. Moved serverSide component logic to classes/TrackerHelper.php'
 1.0.3:
-    - 'Updated tracker to version 3.0 and added consent mode'
+    - 'Updated tracker to version 3.0 and added consent mode. Thanks to DavidHemmerle.'
