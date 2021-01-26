@@ -87,6 +87,45 @@ class TrackerHelper
 
   }
 
+  /**
+   * Get consent options
+  **/
+  public function getConsentSettings(){
+
+    $consentModeEnable = Settings::get('consent_mode', false);
+    if(!$consentModeEnable){
+      return null;
+    }
+
+    $disableCookies = false;
+    $disableCookies = Settings::get('disable_cookies', false);
+
+    $allowCookies = Settings::get('allow_cookies', false);
+
+    if(isset($allowCookies)){
+      $consentCookieName = Settings::get('consent_cookie_name', false);
+  
+      $consentCookieValue = Settings::get('consent_cookie_value', false);
+  
+      $httpCookies = Settings::get('http_cookies', false);
+  
+      $secureCookies = Settings::get('secure_cookies', false);
+  
+      $samesiteCookies = Settings::get('samesite_cookies', false);
+    } 
+
+    return [
+      'disableCookies' => $disableCookies,
+      'allowCookies' => $allowCookies,
+      'consentCookieName' => $consentCookieName,
+      'consentCookieValue' => $consentCookieValue,
+      'httpCookies' => $httpCookies,
+      'secureCookies' => $secureCookies,
+      'samesiteCookies' => $samesiteCookies
+    ];
+
+  }
+
   public function initTracker(){
 
     if( BackendAuth::check() === true ){ return null; }
@@ -95,11 +134,51 @@ class TrackerHelper
     $settings = $this->getSettings();
     if($settings === null){ return null; }
 
-
-
     PiwikTracker::$URL = $settings['urlSite'];
     $piwikTracker = new PiwikTracker( $idSite = $settings['idSite'] );
     $piwikTracker->setTokenAuth($settings['tokenAuth']);
+
+    // get consent settings and disable or enable cookies accordingly
+    $consentSettings = $this->getConsentSettings();
+    if ($consentSettings != null){
+
+      // if Consent Mode is enabled but cookies are not, disable them
+      if ($consentSettings['disableCookies']){
+
+        $piwikTracker->disableCookieSupport();
+
+      } 
+      // otherwise set cookies according to settings
+      else {
+
+        $cookieName = $consentSettings['consentCookieName'];
+        $cookieValue = $consentSettings['consentCookieValue'];
+        
+        if(isset($_COOKIE[$cookieName]) and $consentSettings['allowCookies'] == true) {
+  
+          $consent = $_COOKIE[$cookieName];
+  
+          if($consent != $cookieValue){
+  
+            $piwikTracker->disableCookieSupport();
+  
+          } 
+          else {
+  
+            $domain = "";
+            $path = "/";
+            $secure = $consentSettings['httpCookies'];
+            $httpOnly = $consentSettings['secureCookies'];
+            $sameSite = ($consentSettings['samesiteCookies'] == true ? "Strict" : "None");
+            $piwikTracker->enableCookies($domain, $path, $secure, $httpOnly, $sameSite);
+  
+          }
+        } else {
+          $piwikTracker->disableCookieSupport();
+        }
+      }
+
+    }
 
     //setip mandatory if behind a proxy!
     $ip = $this->getClientIp();
